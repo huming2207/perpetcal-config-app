@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:perpetcal/pages/connect/connect_controller.dart';
+import 'package:perpetcal/pages/connect/connect_page.dart';
 
 void main() {
   runApp(GetMaterialApp(
@@ -22,6 +24,7 @@ class MainBinding extends Bindings {
 class MainController extends GetxController {
   static MainController get to => Get.find();
   var currIdx = 0.obs;
+  var selectedPort = ''.obs;
   final pages = <String>['/connect', '/wifi', '/ical', '/ota'];
 
   void changePage(int idx) {
@@ -29,12 +32,13 @@ class MainController extends GetxController {
     Get.toNamed(pages[idx], id: 1);
   }
 
+  void changePort(String port) {
+    selectedPort.value = port;
+  }
+
   Route? onGenerateRoute(RouteSettings settings) {
     if (settings.name == '/connect') {
-      return GetPageRoute(
-        settings: settings,
-        page: () => const Text('Connection'),
-      );
+      return GetPageRoute(settings: settings, page: () => const ConnectPage(), binding: ConnectBinding());
     }
 
     if (settings.name == '/wifi') {
