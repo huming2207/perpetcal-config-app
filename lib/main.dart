@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:perpetcal/pages/connect/connect_controller.dart';
 import 'package:perpetcal/pages/connect/connect_page.dart';
+import 'package:window_size/window_size.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setWindowTitle('PerpetCal Configurator');
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
     initialRoute: '/main',
