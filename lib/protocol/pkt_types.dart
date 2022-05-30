@@ -65,8 +65,33 @@ extension UsbPacketTypeExt on UsbPacketType {
         return 0xff;
     }
   }
+}
 
-  UsbPacketType fromByte(int value) {
+enum ChunkAckState { xferDone, xferNext, errHashFail, errInternal, errAbort, errNameTooLong }
+
+extension ChunkAckStateExt on ChunkAckState {
+  int get type {
+    switch (this) {
+      case ChunkAckState.xferDone:
+        return 0;
+      case ChunkAckState.xferNext:
+        return 1;
+      case ChunkAckState.errHashFail:
+        return 2;
+      case ChunkAckState.errInternal:
+        return 3;
+      case ChunkAckState.errAbort:
+        return 4;
+      case ChunkAckState.errNameTooLong:
+        return 5;
+      default:
+        return 3;
+    }
+  }
+}
+
+class UsbPacketTypeHelper {
+  static UsbPacketType byteToPktType(int value) {
     switch ((value & 0xff)) {
       case 0x00:
         return UsbPacketType.ack;
@@ -108,31 +133,8 @@ extension UsbPacketTypeExt on UsbPacketType {
         return UsbPacketType.nack;
     }
   }
-}
 
-enum ChunkAckState { xferDone, xferNext, errHashFail, errInternal, errAbort, errNameTooLong }
-
-extension ChunkAckStateExt on ChunkAckState {
-  int get type {
-    switch (this) {
-      case ChunkAckState.xferDone:
-        return 0;
-      case ChunkAckState.xferNext:
-        return 1;
-      case ChunkAckState.errHashFail:
-        return 2;
-      case ChunkAckState.errInternal:
-        return 3;
-      case ChunkAckState.errAbort:
-        return 4;
-      case ChunkAckState.errNameTooLong:
-        return 5;
-      default:
-        return 3;
-    }
-  }
-
-  ChunkAckState fromByte(int value) {
+  static ChunkAckState byteToChunkAck(int value) {
     switch ((value & 0xff)) {
       case 0:
         return ChunkAckState.xferDone;
