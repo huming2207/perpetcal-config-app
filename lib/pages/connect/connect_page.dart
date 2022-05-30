@@ -10,7 +10,7 @@ class ConnectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.find<ConnectController>();
-    var globalController = Get.find<MainController>();
+    var mainController = Get.find<MainController>();
 
     return Scaffold(
       body: Scrollbar(
@@ -31,7 +31,7 @@ class ConnectPage extends StatelessWidget {
                           CardListTile('PID', port.productId?.toRadixString(16))
                         ],
                         trailing: ElevatedButton(
-                          onPressed: () => {globalController.changePort(portAddr)},
+                          onPressed: () => {mainController.changePort(portAddr)},
                           child: const Text('Connect'),
                         ),
                       ));
