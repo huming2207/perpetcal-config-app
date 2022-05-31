@@ -39,6 +39,15 @@ class PacketHeader {
     _crc = PacketHasher.getCRC16(headerBytes, headerCrc);
   }
 
+  PacketHeader.fromType(UsbPacketType type) {
+    _type = type;
+    _len = 0;
+    _body = Uint8List(0);
+
+    final headerBytes = Uint8List.fromList([type.type & 0xff, _len & 0xff, 0, 0]);
+    _crc = PacketHasher.getCRC16(headerBytes);
+  }
+
   UsbPacketType get type {
     return _type;
   }
@@ -55,7 +64,14 @@ class PacketHeader {
     return _body;
   }
 
-  Uint8List get bytes {
+  Uint8List get headerBytes {
     return Uint8List.fromList([type.type & 0xff, _len & 0xff, _crc & 0xff, (_crc >> 8) & 0xff]);
+  }
+
+  Uint8List get fullPacketBytes {
+    final builder = BytesBuilder();
+    builder.add(headerBytes);
+    builder.add(body);
+    return builder.toBytes();
   }
 }
