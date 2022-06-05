@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:perpetcal/protocol/packet_header.dart';
+import 'package:perpetcal/protocol/model/packet_header.dart';
 import 'package:perpetcal/protocol/pkt_types.dart';
 
-class ConfigKeyValEncoder {
+class RequestEncoder {
   static Uint8List encodeSetUint32(String key, int value) {
     var keyBytes = ascii.encode(key);
     if (keyBytes.length > 15) {
