@@ -12,3 +12,8 @@ class UsbConfigKeyTooLongException implements Exception {
   String cause;
   UsbConfigKeyTooLongException(this.cause);
 }
+
+class UsbPacketNackException implements Exception {
+  String cause;
+  UsbPacketNackException(this.cause);
+}
