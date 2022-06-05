@@ -34,6 +34,10 @@ class SlipCodec {
     return encodedData.toBytes();
   }
 
+  void setPacketRecvCallback(Function(Uint8List) cb) {
+    onPacketRecv = cb;
+  }
+
   void _onRecvData(Uint8List bytes) {
     for (final byte in bytes) {
       switch (byte) {
