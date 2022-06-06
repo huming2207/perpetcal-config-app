@@ -6,7 +6,7 @@ import 'package:perpetcal/protocol/model/device_info_pkt.dart';
 import 'package:perpetcal/protocol/model/kv_get_deoder.dart';
 import 'package:perpetcal/protocol/model/packet_header.dart';
 import 'package:perpetcal/protocol/pkt_errors.dart';
-import 'package:perpetcal/protocol/pkt_types.dart';
+import 'package:perpetcal/protocol/model/pkt_types.dart';
 import 'package:perpetcal/protocol/slip_codec.dart';
 
 class PacketCodec {
@@ -54,4 +54,6 @@ class PacketCodec {
         break;
     }
   }
+
+  Future<void> pingDevice() async {}
 }

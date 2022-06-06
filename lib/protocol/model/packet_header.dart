@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:perpetcal/protocol/pkt_errors.dart';
 import 'package:perpetcal/protocol/pkt_hasher.dart';
-import 'package:perpetcal/protocol/pkt_types.dart';
+import 'package:perpetcal/protocol/model/pkt_types.dart';
 
 class PacketHeader {
   late UsbPacketType _type;

@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:perpetcal/protocol/pkt_types.dart';
+import 'package:perpetcal/protocol/model/pkt_types.dart';
 
 class ChunkAckPacket {
   late ChunkAckState ackState;

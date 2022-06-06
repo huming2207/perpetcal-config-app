@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:perpetcal/protocol/model/packet_header.dart';
-import 'package:perpetcal/protocol/pkt_types.dart';
+import 'package:perpetcal/protocol/model/pkt_types.dart';
 
 class RequestEncoder {
   static Uint8List encodeSetUint32(String key, int value) {
