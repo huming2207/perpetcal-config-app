@@ -5,6 +5,16 @@ import 'package:perpetcal/protocol/model/packet_header.dart';
 import 'package:perpetcal/protocol/model/pkt_types.dart';
 
 class RequestEncoder {
+  static Uint8List encodePing() {
+    final header = PacketHeader.fromType(UsbPacketType.ping);
+    return header.fullPacketBytes;
+  }
+
+  static Uint8List encodeDeviceInfo() {
+    final header = PacketHeader.fromType(UsbPacketType.deviceInfo);
+    return header.fullPacketBytes;
+  }
+
   static Uint8List encodeSetUint32(String key, int value) {
     var keyBytes = ascii.encode(key);
     if (keyBytes.length > 15) {
