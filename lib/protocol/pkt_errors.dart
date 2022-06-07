@@ -17,3 +17,8 @@ class UsbPacketNackException implements Exception {
   String cause;
   UsbPacketNackException(this.cause);
 }
+
+class UsbPacketTimeoutException implements Exception {
+  String cause;
+  UsbPacketTimeoutException(this.cause);
+}
